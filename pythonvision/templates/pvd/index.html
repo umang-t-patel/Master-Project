@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vision API - Using Google Cloud Storage, Python and Django</title>
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+      <div class="page-header">
+        <h1>Vision Api <small>using Google Cloud Storage</small></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4">
+        <h3>Images available</h3>
+      </div>
+      <div class="offset1 span7">
+        <h3>Annotations</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span4"><div id="jstree-gcs-demo" class="well"></div></div>
+      <div class="offset1 span7"><div id="file-props" class="well">
+    	  <select name="cars" style="height:160px" multiple>
+    		  <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
+    		  <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
+    		  <option value="FACE_DETECTION">FACE_DETECTION</option>
+    		  <option value="LOGO_DETECTION">LOGO_DETECTION</option>
+    		  <option value="LABEL_DETECTION">LABEL_DETECTION</option>
+    		  <option value="TEXT_DETECTION">TEXT_DETECTION</option>
+    		  <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
+    		  <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
+    	  </select>
+	  </div></div>
+    </div>
+    <div class="row">
+      <div class="span12">
+		<input type="submit" class="btn btn-primary" value="Run Vision API">
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <h3>JSON Output</h3>
+        {% if lab %}
+          <ul>
+              {% for labels in lab %}
+
+                <li>{{ labels.description }}</li>
+              {% endfor %}
+            </ul>
+            {% else %}
+          <p>No Access Records Found!</p>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
