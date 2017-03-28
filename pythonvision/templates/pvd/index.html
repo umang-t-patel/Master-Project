@@ -1,61 +1,115 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Vision API - Using Google Cloud Storage, Python and Django</title>
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
-  </head>
-  <body>
-    <div class="container">
+<head>
+  <meta charset="utf-8">
+  <title>Vision API - Using Google Cloud Storage, Python and Django</title>
+  <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
+  <link rel="stylesheet" href="{% static "css/app.css"%}">
+</head>
+<body>
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#">Home</a></li>
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle">Annotations <b class="caret"></b></a>
+      <ul class="dropdown-menu" id="menu1">
+        <li>
+          <a href="#">Detection <i class="icon-arrow-right"></i></a>
+          <ul class="dropdown-menu sub-menu">
+            <li><a href="#">Text Detection</a></li>
+            <li><a href="#">Label Detection</a></li>
+            <li><a href="#">Logo Detection</a></li>
+            <li class="divider"></li>
+            <li class="nav-header">Vision API</li>
+            <li><a href="#">Documentations</a></li>
+            <li><a href="#">Sample</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Segmentation</a></li>
+        <li><a href="#">Separation</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Documentation</a></li>
+      </ul>
+    </li>
+    <li class="dropdown">
+      <a href="#">Help</a>
+    </li>
+  </ul>
+  <div class="container">
     <div class="row">
       <div class="page-header">
         <h1>Vision Api <small>using Google Cloud Storage</small></h1>
       </div>
     </div>
     <div class="row">
-      <div class="span4">
+      <div class="span5">
         <h3>Images available</h3>
       </div>
-      <div class="offset1 span7">
+      <div class="offset1 span6">
         <h3>Annotations</h3>
       </div>
     </div>
-    <div class="row">
-      <div class="span4"><div id="jstree-gcs-demo" class="well"></div></div>
-      <div class="offset1 span7"><div id="file-props" class="well">
-    	  <select name="cars" style="height:160px" multiple>
-    		  <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
-    		  <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
-    		  <option value="FACE_DETECTION">FACE_DETECTION</option>
-    		  <option value="LOGO_DETECTION">LOGO_DETECTION</option>
-    		  <option value="LABEL_DETECTION">LABEL_DETECTION</option>
-    		  <option value="TEXT_DETECTION">TEXT_DETECTION</option>
-    		  <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
-    		  <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
-    	  </select>
-	  </div></div>
-    </div>
-    <div class="row">
-      <div class="span12">
-		<input type="submit" class="btn btn-primary" value="Run Vision API">
+    <form action="runvision" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="span5"><div id="jstree-gcs-demo" class="well">
+          {% if annotations%}
+          <select class="" name="images" style="height:160px;width:auto;" multiple>
+            {% for ann in annotations %}
+            <option value="{{ann.public_url}}">{{ann.name}}</option>
+            {%endfor%}
+          </select>
+          {% else %}
+          <p>No records found</p>
+          {% endif %}
+        </div></div>
+        <div class="offset1 span6"><div id="file-props" class="well">
+          <select name="annotate" style="height:160px" multiple>
+            <option value="LANDMARK_DETECTION">LANDMARK_DETECTION</option>
+            <option value="TYPE_UNSPECIFIED">TYPE_UNSPECIFIED</option>
+            <option value="FACE_DETECTION">FACE_DETECTION</option>
+            <option value="LOGO_DETECTION">LOGO_DETECTION</option>
+            <option value="LABEL_DETECTION">LABEL_DETECTION</option>
+            <option value="TEXT_DETECTION">TEXT_DETECTION</option>
+            <option value="SAFE_SEARCH_DETECTION">SAFE_SEARCH_DETECTION</option>
+            <option value="IMAGE_PROPERTIES">IMAGE_PROPERTIES</option>
+          </select>
+        </div></div>
       </div>
-    </div>
+      <div class="row">
+        <div class="span12">
+          <input type="submit" class="btn btn-primary" value="Run Vision API">
+        </div>
+      </div>
+    </form>
     <div class="row">
       <div class="span12">
         <h3>JSON Output</h3>
-        {% if lab %}
-          <ul>
-              {% for labels in lab %}
-
-                <li>{{ labels.description }}</li>
-              {% endfor %}
-            </ul>
-            {% else %}
-          <p>No Access Records Found!</p>
-          {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <h5>Land Mark Detection</h5>
+      </div>
+      <div class="span2">
+        <h5>Face Detection</h5>
+      </div>
+      <div class="span2">
+        <h5>Logo Detection</h5>
+      </div>
+      <div class="span2">
+        <h5>Label Detection</h5>
+      </div>
+      <div class="span2">
+        <h5>Text Detection</h5>
+      </div>
+      <div class="span2">
+        <h5>Safe Search Detection</h5>
+      </div>
+      <div class="span2">
+        <h5>Image Properties</h5>
       </div>
     </div>
   </div>
-  </body>
+</body>
 </html>

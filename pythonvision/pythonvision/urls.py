@@ -18,7 +18,8 @@ from django.contrib import admin
 from pvd import views
 
 urlpatterns = [
-    url(r'^buckets',views.buckets,name='buckets'),
+    url(r'^annotations',views.annotations,name='buckets'),
+    url(r'^runvision',views.runvision,name='runvision'),
     url(r'^$',include('pvd.urls')),
     url(r'^admin/', admin.site.urls),
 ]
