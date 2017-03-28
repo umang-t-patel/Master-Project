@@ -20,7 +20,7 @@ def runvision(request):
         images = request.POST.getlist('images')
         annotate =request.POST.getlist('annotate')
         # printing to check whether getting the selected values
-        print (images, annotate)
+        # print (images, annotate)
         html = "Hey"
         vision_client = vision.Client()
         batch = vision_client.batch()

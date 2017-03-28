@@ -5,6 +5,7 @@
     <title>Test</title>
   </head>
   <body>
+  {% if faces%}
   <ul>
     {% for face in faces %}
       <li>{{face.joy}}</li>
@@ -12,37 +13,50 @@
     {% endfor %}
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
+  {% if labels%}
   <ul>
     {% for label in labels %}
       <li>{{label.description}}</li>
     {% endfor %}
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
+  {% if texts%}
   <ul>
     {% for text in texts %}
       <li>{{text.description}}</li>
     {% endfor %}
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
+  {% if pro%}
   <ul>
       <li>{{pro.colors}}</li>
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
+  {% if landmarks%}
   <ul>
     {% for landmark in landmarks %}
       <li>{{landmark.description}}</li>
     {% endfor %}
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
+  {% if logos%}
   <ul>
     {% for logo in logos %}
       <li>{{logo.description}}</li>
     {% endfor %}
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
+  {% if safe_searches%}
   <ul>
       <li>{{safe_searches.violence}}</li>
   </ul>
   <p>-------------------------------------------------------------------------------------------</p>
+  {% endif %}
   </body>
 </html>
