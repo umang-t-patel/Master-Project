@@ -20,6 +20,6 @@ from pvd import views
 urlpatterns = [
     url(r'^annotations',views.annotations,name='buckets'),
     url(r'^runvision',views.runvision,name='runvision'),
-    url(r'^$',include('pvd.urls')),
+    url(r'^',include('pvd.urls')),
     url(r'^admin/', admin.site.urls),
 ]

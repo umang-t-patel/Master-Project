@@ -1,6 +1,6 @@
-entrypoint: python manage.py runserver
-env: flex
 runtime: python
+env: flex
+entrypoint: gunicorn -c config.py pythonvision:app
 
 runtime_config:
   python_version: 3
