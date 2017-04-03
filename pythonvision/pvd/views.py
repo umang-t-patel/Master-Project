@@ -89,3 +89,4 @@ def annotations(request):
     #    print(blob.public_url)
     my_dict={'annotations':blobs}
     return render(request,'pvd/annotations.html',context=my_dict)
+
