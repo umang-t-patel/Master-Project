@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Upload Images</title>
+  <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
+  <link rel="stylesheet" href="{% static "css/app.css"%}">
+</head>
+<body>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Annotations <b class="caret"></b></a>
+        <ul class="dropdown-menu" id="menu1">
+          <li>
+            <a href="#">Detection <i class="icon-arrow-right"></i></a>
+            <ul class="dropdown-menu sub-menu">
+              <li><a href="#">Text Detection</a></li>
+              <li><a href="#">Label Detection</a></li>
+              <li><a href="#">Logo Detection</a></li>
+              <li class="divider"></li>
+              <li class="nav-header">Vision API</li>
+              <li><a href="#">Documentations</a></li>
+              <li><a href="#">Sample</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Segmentation</a></li>
+          <li><a href="#">Separation</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Documentation</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Help</a>
+      </li>
+    </ul>
+    <div class="container">
+    <div class="jumbotron">
+      {% if annotations%}
+      <ul>
+        {% for ann in annotations %}
+        <li><a class="annpopup" href="{{ann.public_url}}" target="_blank">{{ann.name}}</a></li>
+        {%endfor%}
+      </ul>
+      {% else %}
+      <p>No records found</p>
+      {% endif %}
+      <form action="uploadimage" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        Select Image:&nbsp;<input type="file" name="image" id="image" accept="image/*"><br /><br />
+        <input type="submit" class="btn btn-primary" value="Upload Image">
+        <p>{{public_url}}</p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
