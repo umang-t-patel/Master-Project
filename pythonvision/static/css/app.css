@@ -44,3 +44,23 @@ body {
     top: 11px;
     left: -6px;
 }
+.annpopup {
+	zoom:1.0;
+	position:relative;
+	text-decoration:none;
+}
+.annpopup span {
+	position:fixed;
+	top:170px;
+	left:500px;
+	width:350px;
+	padding:10px;
+	border:10px solid #000;
+	border-radius:10px;
+	left:-999em;
+	z-index:990;
+
+}
+.annpopup:hover {visibility:visible}
+.annpopup:hover span {left:350px;}
+* html .annpopup span {position:absolute;}
