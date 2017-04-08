@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^runvision',views.runvision,name='runvision'),
     url(r'^storage',views.uploadstorage,name='uploadstorage'),
     url(r'^uploadimage',views.uploadimage,name='uploadimage'),
-    url(r'^$',views.index),
+    url(r'^$',views.index,name='index'),
     url(r'^admin/', admin.site.urls),
 ]
