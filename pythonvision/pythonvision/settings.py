@@ -16,7 +16,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-CLOUD_STORAGE_BUCKET = 'pythonvisionapi'
+CLOUD_STORAGE_BUCKET = <bucketforstoringimages>
+#CLOUD_STORAGE_BUCKET = 'pythonvisionapi'
 
 # Application definition
 
@@ -90,7 +91,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = 'https://storage.googleapis.com/testpythonvision/static/'
+#STATIC_URL = 'https://storage.googleapis.com/<yourstaticbucket>/static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
